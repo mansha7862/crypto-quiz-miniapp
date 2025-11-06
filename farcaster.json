@@ -1,0 +1,7 @@
+{
+  "name": "Crypto Quiz",
+  "url": "https://crypto-quiz-miniapp.vercel.app",
+  "description": "A fun Farcaster + Base quiz app to test your crypto IQ.",
+  "icon": "https://crypto-quiz-miniapp.vercel.app/icon.png",
+  "developer": "@yourfarcasterhandle"
+}
