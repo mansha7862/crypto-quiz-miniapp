@@ -2,13 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-useEffect(() => {
-  if (typeof window !== "undefined") {
-    window?.farcaster?.actions?.ready?.();   // 👈 signals ready state
-  }
-}, []);
-
-
 export default function Home() {
   const [step, setStep] = useState(0);
   const [score, setScore] = useState(0);
@@ -27,13 +20,14 @@ export default function Home() {
     { q: "What is a Farcaster Frame?", a: "Mini app inside cast", options: ["Airdrop", "Mini app inside cast", "NFT", "Gas fee"] }
   ];
 
-  // 🪄 Farcaster Mini App Ready Trigger
+  // ✅ Farcaster Ready call INSIDE component
   useEffect(() => {
     if (typeof window !== "undefined") {
       try {
         window?.farcaster?.actions?.ready?.();
+        console.log("✅ Farcaster SDK ready called");
       } catch (err) {
-        console.log("Farcaster SDK not found yet:", err);
+        console.log("⚠️ Farcaster SDK not found yet:", err);
       }
     }
   }, []);
