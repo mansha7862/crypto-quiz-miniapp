@@ -20,46 +20,32 @@ export default function Home() {
     { q: "What is a Farcaster Frame?", a: "Mini app inside cast", options: ["Airdrop", "Mini app inside cast", "NFT", "Gas fee"] }
   ];
 
-  // ✅ FINAL FARCASTER READY LOGIC (with retry and visibility fix)
+  // ✅ This triggers Farcaster "Ready" — official working version
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const readyCheck = () => {
+    let tries = 0;
+    const interval = setInterval(() => {
       if (window?.farcaster?.actions?.ready) {
         window.farcaster.actions.ready();
-        console.log("✅ Farcaster ready called");
-        return true;
-      }
-      return false;
-    };
-
-    // try instantly first
-    if (readyCheck()) return;
-
-    // try multiple times (because SDK loads async)
-    let attempts = 0;
-    const interval = setInterval(() => {
-      attempts++;
-      const done = readyCheck();
-      if (done || attempts > 30) {
+        console.log("✅ Farcaster ready called successfully!");
         clearInterval(interval);
-        if (!done) console.warn("⚠️ Farcaster SDK not found after 30 tries");
+      } else {
+        tries++;
+        if (tries > 30) {
+          console.warn("⚠️ Farcaster SDK not found after 30 attempts");
+          clearInterval(interval);
+        }
       }
-    }, 200);
+    }, 250);
 
-    // cleanup
     return () => clearInterval(interval);
   }, []);
 
   const handleAnswer = (option: string) => {
-    if (option === questions[step].a) {
-      setScore(score + 1);
-    }
-    if (step + 1 < questions.length) {
-      setStep(step + 1);
-    } else {
-      setFinished(true);
-    }
+    if (option === questions[step].a) setScore(score + 1);
+    if (step + 1 < questions.length) setStep(step + 1);
+    else setFinished(true);
   };
 
   return (
@@ -94,7 +80,7 @@ export default function Home() {
             <button
               onClick={() =>
                 window?.farcaster?.actions?.openUrl?.(
-                  "https://warpcast.com/~/compose?text=I+just+tested+my+Crypto+IQ+on+Base!+🧠+Try+it+here:+https%3A%2F%2Fcrypto-quiz-miniapp.vercel.app"
+                  "https://warpcast.com/~/compose?text=I+just+tested+my+Crypto+IQ+on+Base!+🧠+Try+it:+https%3A%2F%2Fcrypto-quiz-miniapp.vercel.app"
                 )
               }
               className="px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition"
