@@ -1,30 +1,20 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
-import { Analytics } from "@vercel/analytics/next"
-import { Providers } from "@/components/providers"
-import "@/app/globals.css"
-
-const _geist = Geist({ subsets: ["latin"] })
-const _geistMono = Geist_Mono({ subsets: ["latin"] })
-
-export const metadata: Metadata = {
-  title: "Crypto IQ Test",
-  description: "Test your cryptocurrency knowledge",
-  generator: "v0.app",
-}
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
-  return (
-    <html lang="en">
-      <body className={`font-sans antialiased`}>
-        <Providers>{children}</Providers>
-        <Analytics />
-      </body>
-    </html>
-  )
-}
+export const metadata = {
+  title: "Crypto Quiz",
+  description: "Test your crypto knowledge on Base + Farcaster",
+  other: {
+    "fc:miniapp": JSON.stringify({
+      version: "1",
+      imageUrl: "https://crypto-quiz-miniapp.vercel.app/og-image.png",
+      button: {
+        title: "Play Quiz",
+        action: {
+          type: "launch_frame",
+          name: "Crypto Quiz",
+          url: "https://crypto-quiz-miniapp.vercel.app",
+          splashImageUrl: "https://crypto-quiz-miniapp.vercel.app/splash.png",
+          splashBackgroundColor: "#111111"
+        }
+      }
+    })
+  }
+};
