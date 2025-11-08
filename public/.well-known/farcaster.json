@@ -1,0 +1,17 @@
+{
+  "accountAssociation": {
+    "header": "",
+    "payload": "",
+    "signature": ""
+  },
+  "frame": {
+    "version": "1",
+    "name": "Crypto Quiz",
+    "iconUrl": "https://crypto-quiz-miniapp.vercel.app/icon.png",
+    "homeUrl": "https://crypto-quiz-miniapp.vercel.app",
+    "imageUrl": "https://crypto-quiz-miniapp.vercel.app/image.png",
+    "buttonTitle": "Play Quiz",
+    "splashImageUrl": "https://crypto-quiz-miniapp.vercel.app/splash.png",
+    "splashBackgroundColor": "#111111"
+  }
+}
