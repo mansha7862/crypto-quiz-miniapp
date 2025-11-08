@@ -2,6 +2,13 @@
 
 import { useEffect, useState } from "react";
 
+useEffect(() => {
+  if (typeof window !== "undefined") {
+    window?.farcaster?.actions?.ready?.();   // 👈 signals ready state
+  }
+}, []);
+
+
 export default function Home() {
   const [step, setStep] = useState(0);
   const [score, setScore] = useState(0);
