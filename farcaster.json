@@ -1,9 +1,25 @@
 {
   "name": "Crypto Quiz",
-  "url": "https://crypto-quiz-miniapp.vercel.app",
-  "description": "A fun Farcaster + Base mini app to test your crypto knowledge and share your score.",
-  "icon": "https://crypto-quiz-miniapp.vercel.app/icon.png",
+  "description": "Test your blockchain and crypto knowledge with this interactive quiz on Base + Farcaster.",
+  "iconUrl": "https://crypto-quiz-miniapp.vercel.app/icon.png",
   "developer": "@billionaire",
-  "splash_background_color": "#111111",
-  "home_url": "https://crypto-quiz-miniapp.vercel.app"
+  "splashImageUrl": "https://crypto-quiz-miniapp.vercel.app/splash.png",
+  "splashBackgroundColor": "#111111",
+  "theme": "dark",
+  "categories": ["education", "crypto", "quiz"],
+  "homeUrl": "https://crypto-quiz-miniapp.vercel.app",
+  "termsUrl": "https://crypto-quiz-miniapp.vercel.app/terms",
+  "privacyUrl": "https://crypto-quiz-miniapp.vercel.app/privacy",
+  "contactEmail": "support@cryptoquiz.app",
+  "webhookUrl": "https://crypto-quiz-miniapp.vercel.app/api/webhook",
+  "frame": {
+    "aspectRatio": "3:2",
+    "imageUrl": "https://crypto-quiz-miniapp.vercel.app/image.png",
+    "postUrl": "https://crypto-quiz-miniapp.vercel.app/api/frame"
+  },
+  "accountAssociation": {
+    "header": "",
+    "payload": "",
+    "signature": ""
+  }
 }
