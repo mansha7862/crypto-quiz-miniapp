@@ -1,14 +1,9 @@
 {
   "name": "Crypto Quiz",
   "url": "https://crypto-quiz-miniapp.vercel.app",
-  "description": "A fun Farcaster + Base mini app that lets you test your crypto knowledge.",
+  "description": "A fun Farcaster + Base mini app to test your crypto knowledge and share your score.",
   "icon": "https://crypto-quiz-miniapp.vercel.app/icon.png",
-  "developer": "@yourfarcasterhandle",
+  "developer": "@billionaire",
   "splash_background_color": "#111111",
-  "home_url": "https://crypto-quiz-miniapp.vercel.app",
-  "account_association": {
-    "header": "",
-    "payload": "",
-    "signature": ""
-  }
+  "home_url": "https://crypto-quiz-miniapp.vercel.app"
 }
