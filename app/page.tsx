@@ -20,19 +20,31 @@ export default function Home() {
     { q: "What is a Farcaster Frame?", a: "Mini app inside cast", options: ["Airdrop", "Mini app inside cast", "NFT", "Gas fee"] }
   ];
 
-  // ✅ Working Ready Call Without SDK Import
+  // ✅ Final Reliable "Ready" Trigger
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const readyCheck = setInterval(() => {
+    const tryReady = () => {
       if (window?.farcaster?.actions?.ready) {
         window.farcaster.actions.ready();
-        console.log("✅ Farcaster Ready Called (No SDK Import)");
-        clearInterval(readyCheck);
+        console.log("✅ Farcaster Ready Fired Successfully");
+        return true;
       }
-    }, 300);
+      return false;
+    };
 
-    return () => clearInterval(readyCheck);
+    // Try instantly first
+    if (!tryReady()) {
+      let tries = 0;
+      const timer = setInterval(() => {
+        tries++;
+        if (tryReady() || tries > 40) {
+          clearInterval(timer);
+          if (tries > 40) console.warn("⚠️ Farcaster SDK never became ready");
+        }
+      }, 250);
+      return () => clearInterval(timer);
+    }
   }, []);
 
   const handleAnswer = (option: string) => {
