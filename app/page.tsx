@@ -1,6 +1,6 @@
 "use client";
+
 import { useEffect, useState } from "react";
-import { sdk } from "@farcaster/miniapp-sdk";   // ✅ correct import
 
 export default function Home() {
   const [step, setStep] = useState(0);
@@ -20,17 +20,19 @@ export default function Home() {
     { q: "What is a Farcaster Frame?", a: "Mini app inside cast", options: ["Airdrop", "Mini app inside cast", "NFT", "Gas fee"] }
   ];
 
-  // ✅ Official Docs method: call sdk.actions.ready() once content is ready
+  // ✅ Working Ready Call Without SDK Import
   useEffect(() => {
-    const init = async () => {
-      try {
-        await sdk.actions.ready();
-        console.log("✅ Farcaster Mini App Ready");
-      } catch (err) {
-        console.error("⚠️ Error calling sdk.actions.ready():", err);
+    if (typeof window === "undefined") return;
+
+    const readyCheck = setInterval(() => {
+      if (window?.farcaster?.actions?.ready) {
+        window.farcaster.actions.ready();
+        console.log("✅ Farcaster Ready Called (No SDK Import)");
+        clearInterval(readyCheck);
       }
-    };
-    init();
+    }, 300);
+
+    return () => clearInterval(readyCheck);
   }, []);
 
   const handleAnswer = (option: string) => {
@@ -43,25 +45,34 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#111] to-[#222] text-white p-4">
       <div className="max-w-md w-full bg-[#1b1b1b] p-6 rounded-2xl shadow-lg">
         <h1 className="text-2xl font-bold text-center mb-6">🧠 Crypto IQ Quiz</h1>
+
         {!finished ? (
           <>
             <p className="text-lg mb-4 text-center">{questions[step].q}</p>
             <div className="flex flex-col gap-3">
               {questions[step].options.map((option, i) => (
-                <button key={i} onClick={() => handleAnswer(option)} className="w-full p-3 rounded-lg bg-[#333] hover:bg-[#555] transition">
+                <button
+                  key={i}
+                  onClick={() => handleAnswer(option)}
+                  className="w-full p-3 rounded-lg bg-[#333] hover:bg-[#555] transition"
+                >
                   {option}
                 </button>
               ))}
             </div>
-            <p className="mt-4 text-center text-sm opacity-60">Question {step + 1} of {questions.length}</p>
+            <p className="mt-4 text-center text-sm opacity-60">
+              Question {step + 1} of {questions.length}
+            </p>
           </>
         ) : (
           <div className="text-center">
             <h2 className="text-2xl font-bold mb-2">🎉 Quiz Complete!</h2>
-            <p className="text-lg mb-4">You scored <span className="font-semibold">{score}</span> / {questions.length}</p>
+            <p className="text-lg mb-4">
+              You scored <span className="font-semibold">{score}</span> / {questions.length}
+            </p>
             <button
               onClick={() =>
-                sdk.actions.openUrl(
+                window?.farcaster?.actions?.openUrl?.(
                   "https://warpcast.com/~/compose?text=I+just+tested+my+Crypto+IQ+on+Base!+🧠+Try+it:+https%3A%2F%2Fcrypto-quiz-miniapp.vercel.app"
                 )
               }
@@ -72,7 +83,9 @@ export default function Home() {
           </div>
         )}
       </div>
-      <p className="mt-6 text-xs opacity-60 text-center">Built with ❤️ on Base + Farcaster</p>
+      <p className="mt-6 text-xs opacity-60 text-center">
+        Built with ❤️ on Base + Farcaster
+      </p>
     </main>
   );
 }
