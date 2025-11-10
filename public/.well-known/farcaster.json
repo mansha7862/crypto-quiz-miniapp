@@ -1,17 +1,32 @@
 {
   "accountAssociation": {
-    "header": "",
-    "payload": "",
-    "signature": ""
+    "header": "eyJmaWQiOjkxNTIsInR5cGUiOiJjdXN0b2R5Iiwia2V5IjoiMHgwMmVmNzkwRGQ3OTkzQTM1ZkQ4NDdDMDUzRURkQUU5NDBEMDU1NTk2In0",
+    "payload": "eyJkb21haW4iOiJjcnlwdG8tcXVpei1taW5pYXBwLnZlcmNlbC5hcHAifQ",
+    "signature": "MHgxMGQwZGU4ZGYwZDUwZTdmMGIxN2YxMTU2NDI1MjRmZTY0MTUyZGU4ZGU1MWU0MThiYjU4ZjVmZmQxYjRjNDBiNGVlZTRhNDcwNmVmNjhlMzQ0ZGQ5MDBkYmQyMmNlMmVlZGY5ZGQ0N2JlNWRmNzMwYzUxNjE4OWVjZDJjY2Y0MDFj"
   },
-  "frame": {
+  "baseBuilder": {
+    "ownerAddress": "0xBb3C909c997390A69EF8701c305D68313865a16C"
+  },
+  "miniapp": {
     "version": "1",
-    "name": "Crypto Quiz",
-    "iconUrl": "https://crypto-quiz-miniapp.vercel.app/icon.png",
+    "name": "Crypto IQ Quiz",
     "homeUrl": "https://crypto-quiz-miniapp.vercel.app",
-    "imageUrl": "https://crypto-quiz-miniapp.vercel.app/image.png",
-    "buttonTitle": "Play Quiz",
+    "iconUrl": "https://crypto-quiz-miniapp.vercel.app/icon.png",
     "splashImageUrl": "https://crypto-quiz-miniapp.vercel.app/splash.png",
-    "splashBackgroundColor": "#111111"
+    "splashBackgroundColor": "#111111",
+    "webhookUrl": "https://crypto-quiz-miniapp.vercel.app/api/webhook",
+    "subtitle": "Test your crypto knowledge",
+    "description": "Answer 10 quick crypto questions and see your IQ score instantly! Built on Base + Farcaster.",
+    "screenshotUrls": [
+      "https://crypto-quiz-miniapp.vercel.app/preview.png"
+    ],
+    "primaryCategory": "entertainment",
+    "tags": ["crypto", "quiz", "base", "farcaster"],
+    "heroImageUrl": "https://crypto-quiz-miniapp.vercel.app/og.png",
+    "tagline": "Learn crypto with fun",
+    "ogTitle": "Crypto IQ Quiz",
+    "ogDescription": "Challenge your crypto knowledge. Built with Base.",
+    "ogImageUrl": "https://crypto-quiz-miniapp.vercel.app/og.png",
+    "noindex": false
   }
 }
