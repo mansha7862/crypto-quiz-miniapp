@@ -1,4 +1,4 @@
-export const metadata = {
+export default const metadata = {
   title: "Crypto Quiz",
   description: "Test your crypto knowledge on Base + Farcaster",
   other: {
